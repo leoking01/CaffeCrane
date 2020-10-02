@@ -1,13 +1,10 @@
 #include "commonfunc.h"
+#pragma execution_character_set("utf-8")
 
 CommonFunc::CommonFunc()
 {
 
 }
-
-
-
-
 
 #include <vector>
 #include <exception>
@@ -20,11 +17,8 @@ CommonFunc::CommonFunc()
 
 #include   <stdlib.h>
 #include   <time.h>
-
-
 //------------------------------------------------------------------------
 #include <chrono>
-
 static time_t getTimeStamp()
 {
     std::chrono::time_point<std::chrono::system_clock,std::chrono::milliseconds> tp = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());
@@ -107,12 +101,8 @@ void  _declspec(dllexport)  print_To_Glog( std::string  words,  int degree   )
         LOG_IF(ERROR, x > y) << "error: This should be also OK;error: "<<  words;
     }
 
-     std::cout  << words   << std::endl;
+    std::cout  << words   << std::endl;
 }
-
-
-
-
 
 void print_cvMat_info(cv::Mat img) {
     std::cout << "_______________img info:____________________" << std::endl;
@@ -194,20 +184,98 @@ void cvMat_32bit_to_8bit(cv::Mat &src, cv::Mat &out) {
 }
 
 
+//------------------------------
+void setSz(cv::Mat &mat)
+{
+    int wid = mat.cols;
+    int hei = mat.rows;
+    cv::Mat  rsz ;
+    int  widOpti =  (int)(wid/4)*4;
+    int  heiOpti =  (int)(hei/4)*4;
+    cv::resize(   mat, rsz, cv::Size(widOpti, heiOpti)   ) ;
+    mat = rsz;
+}
+
+//图像格式转换
+QImage MatToQImage2(const cv::Mat &mat)
+{
+    QImage img;
+    int chana = mat.channels();
+    //依据通道数不同，改变不同的装换方式
+    if(3 == chana ){
+        //调整通道次序
+        cv::cvtColor(mat,mat,CV_BGR2RGB);
+        img = QImage(static_cast<uchar *>(mat.data),mat.cols,mat.rows,QImage::Format_RGB888);
+    }
+    else if(4 == chana )
+    {
+        //argb
+        img = QImage(static_cast<uchar *>(mat.data),mat.cols,mat.rows,QImage::Format_ARGB32);
+    }
+    else {
+        //单通道，灰度图
+        img = QImage( mat.cols, mat.rows , QImage::Format_Indexed8);
+        uchar * matdata = mat.data;
+        for(int row = 0 ; row <mat.rows ; ++row )
+        {
+            uchar* rowdata = img.scanLine( row );
+            memcpy(rowdata,matdata ,mat.cols);
+            matdata+=mat.cols;
+        }
+    }
+    return img;
+}
+
+#include <QtWidgets/QLabel>
+#include <QImage>
+#include <QPixmap>
+//参数1-显示图像的Label，参数2-要显示的Mat
+void LabelDisplayMat(QLabel *label, cv::Mat &mat)
+{
+    if( 0 )    {
+        cv::Mat Rgb;
+        QImage Img;
+        if (mat.channels() == 3)
+        {
+            cv::cvtColor(mat, Rgb, CV_BGR2RGB);//颜色空间转换
+            Img = QImage((const uchar*)(Rgb.data), Rgb.cols, Rgb.rows, Rgb.cols * Rgb.channels(), QImage::Format_RGB888);
+        }
+        else
+        {
+            Img = QImage((const uchar*)(mat.data), mat.cols, mat.rows, mat.cols*mat.channels(), QImage::Format_Indexed8);
+        }
+        label->setPixmap(QPixmap::fromImage(Img));
+        label->resize( label->pixmap()->size());
+    }
+    if( 0 )    {
+        //
+        //方法一
+        //直接显示
+        QImage image = MatToQImage2(mat);
+        QPixmap pixmap = QPixmap::fromImage(image);
+        label->setPixmap(pixmap);
+    }
+    if(1 )    {
+        //方法二
+        //按比例缩放
+        cv::Mat  showMat = mat.clone();
+        setSz( showMat  );
+        QImage image=MatToQImage2(showMat);
+        QPixmap pixmap = QPixmap::fromImage(image);
+        int width = label->width();
+        int height = label->height();
+        QPixmap fitpixmap = pixmap.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation); //按比例缩放
+        label->setPixmap(fitpixmap);
+    }
+}
+
 //-------------------------显示函数-： opencv   -----------------------------------
 // 缩放图像
 int getMatProper(cv::Mat &imageProper) {
-    //    return  0;
-    //    try {
     QString imgInfo = QString("getMatProper--imageProper----cols,rows = ") +
             QString::number(imageProper.cols) + QString(",") + QString::number(imageProper.rows);
-    //        ui->textEdit->append( QString ("getMatProper----imgInfo--init---") + imgInfo  );
-
     cv::Mat srcImage = imageProper;//.clone();
-    //    ui->textEdit->setText(  QString("open image file:  ").append(   fileName.toLatin1().data()  )   );
     cv::Mat tmp;
-    //    cv::resize( srcImage, tmp, Size(  rc.right()-rc.left() ,rc.bottom()-rc.top()   ) );
-
     int wid, hei;
     double lenTar = 400.0;
     double rateWid = lenTar / (double) imageProper.cols;
@@ -222,16 +290,9 @@ int getMatProper(cv::Mat &imageProper) {
     hei = (int) ((int) (hei / 4)) * 4;
 
     cv::resize(srcImage, tmp, cv::Size((int) wid, (int) hei));
-
     imgInfo = QString("getMatProper--finlImageWidHei----wid , hei = ") +
             QString::number(wid) + QString(",") + QString::number(hei);
-    //        ui->textEdit->append( QString ("getMatProper----imgInfo--after---") + imgInfo  );
-
     tmp.copyTo(imageProper);
-    //    }
-    //    catch (std::exception ex) {
-    //        //        ui->textEdit->append( QString ("getMatProper--发生异常--")   );
-    //    }
     return 0;
 }
 
@@ -240,10 +301,6 @@ void showMatOnLabel(cv::Mat img, QLabel *label) {
     cv::Mat srcImage = img.clone();
     getMatProper(srcImage);
     cv::Mat tmp;
-    // cv::resize( srcImage, tmp,cv:: Size( 800,   640   ) );
-    //    cv::resize( srcImage, tmp, Size( 400,   300   ) );
-    //    cv::resize( srcImage, tmp, Size( UtilBase::getNearestInt(srcImage.cols  ),   UtilBase::getNearestInt(srcImage.rows  )   ) );
-    //    tmp.copyTo(srcImage);
     if (srcImage.channels() >= 3) {
         cv::cvtColor(srcImage, srcImage, cv::COLOR_BGR2RGB);//图像格式转换
         QImage disImage = QImage((const unsigned char *) (srcImage.data), srcImage.cols, srcImage.rows,
@@ -268,25 +325,25 @@ void displayResult(cv::Mat matt, QLabel *label_2) {   //show the resultImage in 
         cv::cvtColor(mat, tmp, cv::COLOR_GRAY2BGR);
         tmp.copyTo(mat);
     }
-
     if (mat.elemSize1() == 2 && mat.channels() == 1) {
         cv::Mat tmp;
         cvMat_16bit_to_8bit(mat, tmp);
         tmp.copyTo(mat);
     }
-
     if (mat.elemSize1() == 4 && mat.channels() == 1) {
         cv::Mat tmp;
         cvMat_32bit_to_8bit(mat, tmp);
         tmp.copyTo(mat);
     }
-
     if (mat.channels() == 4)    // RGB image
     {
         cv::Mat tmp;
         cv::cvtColor(mat, tmp, cv::COLOR_RGBA2BGR);
         tmp.copyTo(mat);
     }
+    LabelDisplayMat(  label_2,  mat );
+    return ;
+
     cv::Mat rgb;
     QImage img;
     if (mat.channels() == 3)    // RGB image
@@ -310,3 +367,163 @@ void displayResult(cv::Mat matt, QLabel *label_2) {   //show the resultImage in 
     label_2->show();
     return;
 }
+
+
+//----------------------------------------------------------------------------
+
+#include <QDebug>
+#include <QImage>
+#include <QPixmap>
+
+#include "opencv2/opencv.hpp"
+
+// 将Mat转化位QImage
+QImage  cvMatToQImage( const cv::Mat &inMat )
+{
+    switch ( inMat.type() )
+    {
+    // 8-bit, 4 channel
+    case CV_8UC4:
+    {
+        QImage image( inMat.data,
+                      inMat.cols, inMat.rows,
+                      static_cast<int>(inMat.step),
+                      QImage::Format_ARGB32 );
+
+        return image;
+    }
+
+    // 8-bit, 3 channel
+    case CV_8UC3:
+    {
+        QImage image( inMat.data,
+                      inMat.cols, inMat.rows,
+                      static_cast<int>(inMat.step),
+                      QImage::Format_RGB888 );
+
+        return image.rgbSwapped();
+    }
+
+    // 8-bit, 1 channel
+    case CV_8UC1:
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+        QImage image( inMat.data,
+                      inMat.cols, inMat.rows,
+                      static_cast<int>(inMat.step),
+                      QImage::Format_Grayscale8 );//Format_Alpha8 and Format_Grayscale8 were added in Qt 5.5
+#else//这里还有一种写法，最后给出
+        static QVector<QRgb>  sColorTable;
+
+        // only create our color table the first time
+        if ( sColorTable.isEmpty() )
+        {
+            sColorTable.resize( 256 );
+
+            for ( int i = 0; i < 256; ++i )
+            {
+                sColorTable[i] = qRgb( i, i, i );
+            }
+        }
+
+        QImage image( inMat.data,
+                      inMat.cols, inMat.rows,
+                      static_cast<int>(inMat.step),
+                      QImage::Format_Indexed8 );
+
+        image.setColorTable( sColorTable );
+#endif
+
+        return image;
+    }
+
+    default:
+        qWarning() << "CVS::cvMatToQImage() - cv::Mat image type not handled in switch:" << inMat.type();
+        break;
+    }
+
+    return QImage();
+}
+
+//将Mat转化为QPixmap
+QPixmap cvMatToQPixmap( const cv::Mat &inMat )
+{
+    return QPixmap::fromImage( cvMatToQImage( inMat ) );
+}
+
+//将QImage转化为Mat
+cv::Mat QImageToCvMat( const QImage &inImage, bool inCloneImageData  )
+{
+    switch ( inImage.format() )
+    {
+    // 8-bit, 4 channel
+    case QImage::Format_ARGB32:
+    case QImage::Format_ARGB32_Premultiplied:
+    {
+        cv::Mat  mat( inImage.height(), inImage.width(),
+                      CV_8UC4,
+                      const_cast<uchar*>(inImage.bits()),
+                      static_cast<size_t>(inImage.bytesPerLine())
+                      );
+
+        return (inCloneImageData ? mat.clone() : mat);
+    }
+
+    // 8-bit, 3 channel
+    case QImage::Format_RGB32:
+    case QImage::Format_RGB888:
+    {
+        if ( !inCloneImageData )
+        {
+            qWarning() << "CVS::QImageToCvMat() - Conversion requires cloning because we use a temporary QImage";
+        }
+
+        QImage   swapped = inImage;
+
+        if ( inImage.format() == QImage::Format_RGB32 )
+        {
+            swapped = swapped.convertToFormat( QImage::Format_RGB888 );
+        }
+
+        swapped = swapped.rgbSwapped();
+
+        return cv::Mat( swapped.height(), swapped.width(),
+                        CV_8UC3,
+                        const_cast<uchar*>(swapped.bits()),
+                        static_cast<size_t>(swapped.bytesPerLine())
+                        ).clone();
+    }
+
+    // 8-bit, 1 channel
+    case QImage::Format_Indexed8:
+    {
+        cv::Mat  mat( inImage.height(), inImage.width(),
+                      CV_8UC1,
+                      const_cast<uchar*>(inImage.bits()),
+                      static_cast<size_t>(inImage.bytesPerLine())
+                      );
+
+        return (inCloneImageData ? mat.clone() : mat);
+    }
+
+    default:
+        qWarning() << "CVS::QImageToCvMat() - QImage format not handled in switch:" << inImage.format();
+        break;
+    }
+
+    return cv::Mat();
+}
+
+//将QPixmap转化为Mat
+cv::Mat QPixmapToCvMat( const QPixmap &inPixmap, bool inCloneImageData  )
+{
+    return QImageToCvMat( inPixmap.toImage(), inCloneImageData );
+}
+
+
+
+
+
+
+
+

@@ -1,6 +1,8 @@
 #include "formclassify.h"
 #include "ui_formclassify.h"
 
+#pragma execution_character_set("utf-8")
+
 FormClassify * FormClassify::instance=NULL;
 
 FormClassify::FormClassify(QWidget *parent) :
@@ -38,19 +40,14 @@ void FormClassify::on_selClass02Dir_clicked()
 
 #include  <iostream>
 #include  <string>
-//void  getDirAllFileNames()
-//{
-//}
-
-
 #include <boost/filesystem.hpp>
-int  getFiles(const std::string& rootPath,
+int  getFiles(QString& rootPath,
               std::vector<std::string> &ret,
               std::vector<std::string> &name)
 {
-    if( rootPath.empty()) return   -1;
+    if( rootPath.isEmpty()) return   -1;
     namespace fs = boost::filesystem;
-    fs::path fullpath (rootPath);
+    fs::path fullpath (rootPath.toLocal8Bit().data());
     fs::recursive_directory_iterator end_iter;
     for(fs::recursive_directory_iterator iter(fullpath);iter!=end_iter;iter++)
     {
@@ -80,34 +77,38 @@ int  getFiles(const std::string& rootPath,
 
 #include "vgribbonwindow.h"
 #include  "opencv2/opencv.hpp"
-void testLocal(std::string imgPath)
+void testLocal(QString imgPath)
 {
+    std:: cout<<"imgPath = "<<  imgPath.toStdString()<< std::endl;
     std::vector<std::string> nameWithPath;//绝对路径
     std::  vector<std::string> imgName;//文件名字
-    //get files
     int res =   getFiles(imgPath, nameWithPath, imgName);
     if(res<0) return  ;
-
+    std:: cout<<"nameWithPath.size() = "<<  nameWithPath.size() << std::endl;
     for(int i = 0; i < nameWithPath.size(); i++)
     {
-        std:: cout<<imgName[i]<<" "<<std::endl;
+         std:: cout  <<  nameWithPath[i]<<"," ;// std::endl;
+//         continue;
         cv:: Mat image =  cv::  imread(nameWithPath[i]);
-        //do something
-        if( !image.data )continue;
-        //       cv::  imshow( "image",  image );
-        //        cv::waitKey(3);
+        if( !image.data )  {
+             std:: cout  <<   "(读图错误，没有数据.)" << std::endl;
+            continue;
+        }
         VGRibbonWindow*  pwin = VGRibbonWindow::getInstance();
         pwin->m_cv_img = image;
         pwin->repaint( ) ;
     }
-    //    delete detModel;
+    std:: cout<<  std::endl;
 }
 
 
 //train
 void FormClassify::on_train_clicked()
 {
-    std::string dirClass01 = this->ui->lineEdit->text().toStdString();
+//    std::string dirClass01 = this->ui->lineEdit->text().toStdString();
+//    testLocal(dirClass01);
+
+    QString dirClass01 = this->ui->lineEdit->text();//.toStdString();
     testLocal(dirClass01);
 }
 

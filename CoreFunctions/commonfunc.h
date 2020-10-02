@@ -41,4 +41,15 @@ void displayResult(cv::Mat matt, QLabel *label_2);
 std::string  getDatetimeStr();
 void  _declspec(dllexport) print_To_Glog(std::string words,int degree);
 
+//-----------------------
+#include <QDebug>
+#include <QImage>
+#include <QPixmap>
+
+#include "opencv2/opencv.hpp"
+QImage  cvMatToQImage( const cv::Mat &inMat ) ;
+QPixmap cvMatToQPixmap( const cv::Mat &inMat ) ;
+cv::Mat QImageToCvMat( const QImage &inImage, bool inCloneImageData = true ) ;
+cv::Mat QPixmapToCvMat( const QPixmap &inPixmap, bool inCloneImageData = true ) ;
+
 #endif // COMMONFUNC_H

@@ -8,7 +8,10 @@
 #include <iomanip>
 #include <chrono>
 #include <time.h>
+#pragma execution_character_set("utf-8")
+//#pragma execution_character_set("utf-8")
 
+#include <QTextCodec>
 /*
  * 判断是否是当天，时区问题内部已考虑
  * @param    timeStamp        当前时间戳(单位s)
@@ -108,21 +111,39 @@ bool  ifValideCheck(std::  string sEndTime)
 
 int main(int argc, char *argv[])
 {
+#if  0
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    // QTextCodec::setCodecForTr(codec);
+    QTextCodec::setCodecForLocale(QTextCodec::codecForLocale()); //设置GBK到本地
+    // QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
+#endif
+
+#ifdef ifLINUX_PLATFORM
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8") );
+    //  QTextCodec::setCodecForLocale(QTextCodec::codecForLocale() );
+    // QTextCodec::setCodecForTr(QTextCodec::codecForName("system"));
+    // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("system") );
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("system") );
+
     //----------------------------------------------
     std:: time_t myt=time(NULL);
     std:: time_t t;
     time( &t );
     checkTimestamp( t ) ;
-    if(  !  ifValideCheck("2022-09-28"))
-    {
+    if(  !  ifValideCheck("2022-09-28")  ){
         std::cout<< "product has been out of valid date.please contact to the server provider."<<std::endl;
         return  -1;
     }
     //----------------------------------------------
     //中文支持
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    // QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QFont font;
-    font.setPointSize(16); //实际上是16的字号，但设成16却不行
+    font.setPointSize( 16 ); //实际上是16的字号，但设成16却不行
     font.setFamily(("wenquanyi"));
     font.setBold(false);
 
@@ -131,8 +152,6 @@ int main(int argc, char *argv[])
     freopen("CONOUT$", "a+", stdout);
 #endif
 
-
-
     // Initialize Google's logging library.
     google::InitGoogleLogging(argv[0]);
     google::SetLogDestination(google::GLOG_INFO ,"D:/out/a_QRibbonMasterDemoModyCMakeClassify.txt");
@@ -140,8 +159,6 @@ int main(int argc, char *argv[])
     FLAGS_logtostderr  = false;
     FLAGS_alsologtostderr = false;// //打印到日志同时是否打印到控制台
     LOG(INFO) <<"a_QRibbonMasterDemoModyCMakeClassify start.  " << std::endl;
-
-
 
     QApplication a(argc, argv);
 #if 0

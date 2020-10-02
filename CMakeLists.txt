@@ -1,14 +1,14 @@
 cmake_policy(VERSION 3.9)
 cmake_minimum_required(VERSION 3.9)
 
-project(QRibbonMasterDemoModyCMakeClassifyWithDoc)
+project(caffe10Cv310DevProClaffifyV1)
 
 if(1)
     set (PclVision_VERSION_MAJOR 2)
     set (PclVision_VERSION_MINOR 202006261423)
 endif()
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11 )
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
@@ -84,8 +84,8 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 
 
-
-set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/QRibbonMasterDemoModyCMakeClassifyWithDoc/dependence")
+set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
+set( Lib_dep_root    "e:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
 
 
 
@@ -142,27 +142,11 @@ endif()
 
 
 
-
-if(0 )
-    ##boost
-    SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
-    set(BOOST_INCLUDEDIR "D:/win10/aspDepBig/Boost168/include/boost-1_68")
-    #set(BOOST_DIR "D:/win10/aspDepBig/Boost168")
-    set(Boost_LIBRARY_DIR "D:/win10/aspDepBig/Boost168/lib")
-    #find_package(Boost REQUIRED COMPONENTS       filesystem       thread      )
-    find_package(Boost   COMPONENTS       filesystem       thread      )
-    if(NOT Boost_FOUND)
-        message("Not found Boost")
-    endif()
-endif()
-
-
-
 #D:/win10/pcl181Orig/3rdParty/Boost/include/boost-1_64
 SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
-set(BOOST_INCLUDEDIR "${Lib_dep_root}/Boost/include/boost-1_64")
-set(BOOST_DIR "${Lib_dep_root}/Boost")
-set(Boost_LIBRARY_DIR "${Lib_dep_root}/Boost/lib")
+set(BOOST_INCLUDEDIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
+set(BOOST_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries")
+set(Boost_LIBRARY_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 #find_package(Boost REQUIRED COMPONENTS       filesystem       thread      )
 find_package(Boost   COMPONENTS       filesystem       thread      )
 if(NOT Boost_FOUND)
@@ -179,8 +163,9 @@ LINK_DIRECTORIES(  "${Boost_LIBRARY_DIR}")
 #   //cv
 #D:\win10\opencv310Full\opencv-3.1.0Cu8Vs15Full\x64\vc14\lib
 #D:\\win10\\opencv440\\opencv\\build\\x64\\vc14\\lib
-set(OpenCV_DIR "${Lib_dep_root}\\opencv440\\opencv\\build\\x64\\vc14\\lib")
-find_package( OpenCV  EXACT  4.4.0  REQUIRED PATHS "${Lib_dep_root}\\opencv440\\opencv\\build" )
+set(OpenCV_DIR "${Lib_dep_root}/cv310Vs15Cuda8installAllFull/x64/vc14/lib")
+set(OpenCV_DIR "E:\\AwsOneDriver\\aStudioLk\\caffe10Cv310DevProClaffifyV1\\dependence/cv310Vs15Cuda8installAllFull/x64/vc14/lib")
+find_package( OpenCV  EXACT  3.1.0  REQUIRED PATHS "${Lib_dep_root}/cv310Vs15Cuda8installAllFull" )
 
 
 
@@ -229,9 +214,10 @@ set(GLOG_LIB glogd)
 
 #--------------------------------------------project------------------------------------------------------
 #####################################做成动态库########################################################
-set( LIBRARY_OUTPUT_PATH   ${PROJECT_BINARY_DIR}/lib)
-set(LIBRARY_OUTPUT_DIRECTORY   ${PROJECT_BINARY_DIR}/lib)
+
 if(  0  )
+    set( LIBRARY_OUTPUT_PATH   ${PROJECT_BINARY_DIR}/lib)
+    set(LIBRARY_OUTPUT_DIRECTORY   ${PROJECT_BINARY_DIR}/lib)
     add_library(ImageClassifyQtKnn SHARED  ${HEADERS} ${SOURCES} ${vision_SOURCE}   ${FORMS}  ${RESOURCES}  )  # ALL_SOURCE
 
     target_link_libraries(  ImageClassifyQtKnn    PUBLIC
@@ -266,7 +252,7 @@ endif()
 
 ######################################生成exe#######################################################
 if( 1  )
-    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
     add_executable(${PROJECT_NAME}    MACOSX_BUNDLE ${SOURCES}   ${vision_SOURCE}   ${FORMS}   ${RESOURCES}  ) # ${RESOURCES}
     if(  1 )
         target_link_libraries(   ${PROJECT_NAME}  PUBLIC
@@ -299,24 +285,11 @@ set(CMAKE_INSTALL_PREFIX  "${PROJECT_BINARY_DIR}/install")
 ## Binaries
 install (TARGETS  ${PROJECT_NAME}     DESTINATION bin)
 
-# Library
-# Note: may not work on windows
-#install (TARGETS ImageClassifyQtKnn_exe    LIBRARY DESTINATION lib)
-
-## Library
-## Note: may not work on windows
-#install (FILES
-#    MainApp/mainapp.h
-#    LaserCamera/lasercameraAPI.h
-#    VisionUI/exportapis.h
-#    DESTINATION include)
-
-
 
 #######################################################
 #Add some multithreaded build support
 MARK_AS_ADVANCED(MULTITHREADED_BUILD)
-set(MULTITHREADED_BUILD 8 CACHE STRING "How many threads are used to build the project")
+set(MULTITHREADED_BUILD   8  CACHE STRING "How many threads are used to build the project")
 if(MULTITHREADED_BUILD)
     if(${CMAKE_GENERATOR} MATCHES "Unix Makefiles")
         message(STATUS ${CMAKE_BUILD_TOOL})

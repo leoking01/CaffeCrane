@@ -53,4 +53,5 @@ public:
 
 public:
     cv::Mat   m_cv_img;
+      std::string m_fileDir;
 };
