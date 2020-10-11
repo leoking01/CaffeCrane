@@ -204,7 +204,7 @@ QImage MatToQImage2(const cv::Mat &mat)
     //依据通道数不同，改变不同的装换方式
     if(3 == chana ){
         //调整通道次序
-        cv::cvtColor(mat,mat,CV_BGR2RGB);
+        cv::cvtColor(mat,mat,cv::COLOR_BGR2RGB);
         img = QImage(static_cast<uchar *>(mat.data),mat.cols,mat.rows,QImage::Format_RGB888);
     }
     else if(4 == chana )
@@ -237,7 +237,7 @@ void LabelDisplayMat(QLabel *label, cv::Mat &mat)
         QImage Img;
         if (mat.channels() == 3)
         {
-            cv::cvtColor(mat, Rgb, CV_BGR2RGB);//颜色空间转换
+            cv::cvtColor(mat, Rgb, cv::COLOR_BGR2RGB);//颜色空间转换
             Img = QImage((const uchar*)(Rgb.data), Rgb.cols, Rgb.rows, Rgb.cols * Rgb.channels(), QImage::Format_RGB888);
         }
         else
