@@ -83,19 +83,18 @@ qt5_wrap_ui(ui_FILES *.ui   )
 file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 
-
 #set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
-set( Lib_dep_root    "e:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
-
+set( Lib_dep_root    "D:/AwsOneDriver/AStudioLk/caffe10DevProClaffifyV1/dependence")
+#                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
 #D:\caffeBundle\libraries_v140_x64_py35_1.1.0\libraries
 #   //cv
 #D:\win10\opencv310Full\opencv-3.1.0Cu8Vs15Full\x64\vc14\lib
 #D:\\win10\\opencv440\\opencv\\build\\x64\\vc14\\lib
 #set(OpenCV_DIR "${Lib_dep_root}/cv310Vs15Cuda8installAllFull/x64/vc14/lib")
-set(OpenCV_FOUND  TRUE)
+#set(OpenCV_FOUND  TRUE)
 #set(OpenCV_DIR "E:\\AwsOneDriver\\aStudioLk\\caffe10Cv310DevProClaffifyV1\\dependence/cv310Vs15Cuda8installAllFull")
-find_package( OpenCV   REQUIRED PATHS "${Lib_dep_root}/cv310Vs15Cuda8installAllFull" )
+#find_package( OpenCV   REQUIRED PATHS "${Lib_dep_root}/cv310Vs15Cuda8installAllFull" )
 #find_package( OpenCV   EXACT  3.1.0  REQUIRED   )
 
 #if( 0 )
@@ -149,21 +148,23 @@ find_package( OpenCV   REQUIRED PATHS "${Lib_dep_root}/cv310Vs15Cuda8installAllF
 
 
 
-#D:/win10/pcl181Orig/3rdParty/Boost/include/boost-1_64
-SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
-set(BOOST_INCLUDEDIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
-set(BOOST_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries")
-set(Boost_LIBRARY_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
-#find_package(Boost REQUIRED COMPONENTS       filesystem       thread      )
-find_package(Boost   COMPONENTS       filesystem       thread      )
-if(NOT Boost_FOUND)
-    message("Not found Boost")
-endif()
-INCLUDE_DIRECTORIES( ${BOOST_INCLUDEDIR}  )
-LINK_DIRECTORIES(  "${Boost_LIBRARY_DIR}")
-#LINK_LIBRARIES
-
-
+##D:/win10/pcl181Orig/3rdParty/Boost/include/boost-1_64
+#SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
+#set(BOOST_INCLUDEDIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
+#set(BOOST_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries")
+#set(Boost_LIBRARY_DIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+##find_package(Boost REQUIRED COMPONENTS       filesystem       thread      )
+#find_package(Boost   COMPONENTS       filesystem       thread      )
+#if(NOT Boost_FOUND)
+#    message("Not found Boost")
+#endif()
+#INCLUDE_DIRECTORIES( ${BOOST_INCLUDEDIR}  )
+#LINK_DIRECTORIES(  "${Boost_LIBRARY_DIR}")
+##LINK_LIBRARIES
+#LINK_DIRECTORIES(  "D:/AwsOneDriver/AStudioLk/caffe10DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#message( "__________________________________________" )
+#message( "BOOST_LIBRARIES: " )
+##message( ${BOOST_LIBRARIES} )
 
 
 
@@ -186,26 +187,26 @@ message( "jsoncpp find finish.\n\n")
 
 
 
-#-----------------------------------------添加子文件夹，不添加子库--------------------------------------------------
-# 用include 和 aux_source_directory allsource
-#-------------------------------------------- glog ----------------------------------------------------
-link_directories("${PROJECT_BINARY_DIR}/lib")
-#D:\awsPcl\AppPclVision\pcl191X64\thirdpartx64
-#set( Lib_dep_root    "${Lib_dep_root}/glog-0.4.0/x64")
-find_package(glog  REQUIRED  PATHS  "${Lib_dep_root}/glog-0.4.0/x64" )
-include_directories(${glog_include_directory})
-link_directories(${glog_library_directory} )
-include_directories(SYSTEM ${GLOG_INCLUDE_DIRS})
-list(APPEND LINKER_LIBS ${GLOG_LIBRARIES})
-#message(  ${glog_include_directory}  )
-#message(  ${glog_library_directory}  )
-#message(  ${glog_libraries}  )
-include_directories(  "${Lib_dep_root}/glog-0.4.0/x64/include"  )
-link_directories(  "${Lib_dep_root}/glog-0.4.0/x64/lib"  )
-##   D:\win10\aspDep\glog-0.4.0\x64\include
-#include_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/include"  )  # D:\win10\wsx3dDepBig
-#link_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/lib"  )
-set(GLOG_LIB glogd)
+##-----------------------------------------添加子文件夹，不添加子库--------------------------------------------------
+## 用include 和 aux_source_directory allsource
+##-------------------------------------------- glog ----------------------------------------------------
+#link_directories("${PROJECT_BINARY_DIR}/lib")
+##D:\awsPcl\AppPclVision\pcl191X64\thirdpartx64
+##set( Lib_dep_root    "${Lib_dep_root}/glog-0.4.0/x64")
+#find_package(glog  REQUIRED  PATHS  "${Lib_dep_root}/glog-0.4.0/x64" )
+#include_directories(${glog_include_directory})
+#link_directories(${glog_library_directory} )
+#include_directories(SYSTEM ${GLOG_INCLUDE_DIRS})
+#list(APPEND LINKER_LIBS ${GLOG_LIBRARIES})
+##message(  ${glog_include_directory}  )
+##message(  ${glog_library_directory}  )
+##message(  ${glog_libraries}  )
+#include_directories(  "${Lib_dep_root}/glog-0.4.0/x64/include"  )
+#link_directories(  "${Lib_dep_root}/glog-0.4.0/x64/lib"  )
+###   D:\win10\aspDep\glog-0.4.0\x64\include
+##include_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/include"  )  # D:\win10\wsx3dDepBig
+##link_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/lib"  )
+#set(GLOG_LIB glogd)
 
 
 
@@ -213,7 +214,6 @@ set(GLOG_LIB glogd)
 
 #--------------------------------------------project------------------------------------------------------
 #####################################做成动态库########################################################
-
 #if(  0  )
 #    set( LIBRARY_OUTPUT_PATH   ${PROJECT_BINARY_DIR}/lib)
 #    set(LIBRARY_OUTPUT_DIRECTORY   ${PROJECT_BINARY_DIR}/lib)
@@ -244,6 +244,63 @@ set(GLOG_LIB glogd)
 #endif()
 
 
+####################################################################################
+####################################################################################
+####################################################################################
+#D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence\installCaffeOFull
+
+# caffe
+set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe" )
+find_package(  caffe REQUIRED PATHS  "D:/caffeBundle/installCaffeOFull"  )
+include_directories(  "D:/caffeBundle/installCaffeOFull/include"  )
+LINK_DIRECTORIES (  "D:/caffeBundle/installCaffeOFull/lib" )
+# ${Caffe_LIBRARIES}
+
+# zlib
+##D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib
+#set(ZLIB_LIBRARY  "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib" )
+#set(zlib_DIR   "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
+#find_package(  zlib   PATHS "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
+
+# boost
+find_package(  boost REQUIRED )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+## gflags
+#find_package(   gflags REQUIRED PATHS  "D:/win10/aspDep14/gflags-2.2.2/x64Vs14"    )
+#INCLUDE_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14/include")
+#LINK_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14Shared/lib")
+
+find_package(   gflags REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+## glog
+#find_package(   glog REQUIRED PATHS  "D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared"    )
+#INCLUDE_DIRECTORIES("D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared/include")
+#LINK_DIRECTORIES("D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared/lib")
+
+
+find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+#// cuad
+INCLUDE_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/include")
+LINK_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/lib/x64")
+
+#//cv
+find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/x64/vc14/lib"  )
+INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
+INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
+
+
+####################################################################################
+####################################################################################
+####################################################################################
 
 
 ######################################生成exe#######################################################
@@ -254,7 +311,21 @@ if( 1  )
         target_link_libraries(   ${PROJECT_NAME}  PUBLIC
             Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
             ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
-            ${BOOST_LIBRARIES}            ${EXTRA_LIBS}
+            ${BOOST_LIBRARIES}
+            D:/AwsOneDriver/AStudioLk/caffe10DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
+            boost_date_time-vc140-mt-1_61.lib
+            ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
+            ${Caffe_LIBRARIES}
+#                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib
+#                   glog
+
+            D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
+               D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
+
+            boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
+            boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
+
+            ${EXTRA_LIBS}
             ${OpenCV_LIBRARIES}            #  ${jsoncpp_LIBRARIES}
             jsoncpp            #   ${tinyxml2_LIBRARIES}
             ${log4cplus_LIBRARIES}            ${glog_libraries}
