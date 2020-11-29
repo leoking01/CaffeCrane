@@ -84,7 +84,7 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 
 #set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
-set( Lib_dep_root    "D:/AwsOneDriver/AStudioLk/caffe10DevProClaffifyV1/dependence")
+set( Lib_dep_root    "D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
 #                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
 #D:\caffeBundle\libraries_v140_x64_py35_1.1.0\libraries
@@ -293,7 +293,9 @@ INCLUDE_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/include")
 LINK_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/lib/x64")
 
 #//cv
-find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/x64/vc14/lib"  )
+#D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/cv310Vs15Cuda8installAllFull
+#find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/x64/vc14/lib"  )
+find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs15Cuda8installAllFull"  )
 INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
 INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
 
@@ -312,15 +314,15 @@ if( 1  )
             Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
             ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
             ${BOOST_LIBRARIES}
-            D:/AwsOneDriver/AStudioLk/caffe10DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
+            D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
             boost_date_time-vc140-mt-1_61.lib
             ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
             ${Caffe_LIBRARIES}
 #                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib
 #                   glog
 
-            D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
-               D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
+            D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
+             D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
 
             boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
             boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
