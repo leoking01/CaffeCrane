@@ -1,7 +1,7 @@
 cmake_policy(VERSION 3.9)
 cmake_minimum_required(VERSION 3.9)
 
-project(caffe10Cv310DevProClaffifyV1)
+project(cf10Cv310DevProClaffifyV1)
 
 if(1)
     set (PclVision_VERSION_MAJOR 2)
