@@ -84,7 +84,7 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 
 #set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
-set( Lib_dep_root    "D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
+set( Lib_dep_root    "D:/AwsOneDriver/cf10Cv310DevProClaffifyV1/dependence")
 #                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
 #D:\caffeBundle\libraries_v140_x64_py35_1.1.0\libraries
@@ -314,15 +314,16 @@ if( 1  )
             Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
             ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
             ${BOOST_LIBRARIES}
-            D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
+#            D:\AwsOneDriver\cf10Cv310DevProClaffifyV1\dependence
+            D:/AwsOneDriver/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
             boost_date_time-vc140-mt-1_61.lib
             ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
             ${Caffe_LIBRARIES}
 #                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib
 #                   glog
 
-            D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
-             D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
+            D:/AwsOneDriver/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
+             D:/AwsOneDriver/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
 
             boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
             boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
