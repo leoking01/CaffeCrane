@@ -71,14 +71,58 @@ void VGRibbonWindow::paintEvent(QPaintEvent *event) {
             return;
         displayResult(this->m_cv_img, this->ui->label);
 
-        //---
-        QPainter painter(this);
-        QPixmap pix;
-        painter.translate(0, 0);
-        pix.load("D:\imageHeben/hb (1).jpg");//加载图片地址 可以是资源文件
-        pix =  cvMatToQPixmap(this->m_cv_img);
-          if(0) painter.drawPixmap(0, 0, width(), height(), pix);//绘制图片 横坐标、纵坐标、宽度、高度
-        painter.drawPixmap(0, 0,   pix);
+        //--------------------------
+        if( 0 )
+        {
+            QPainter painter(this);
+            QPixmap pix;
+            painter.translate(0, 0);   if(0)
+                pix.load("D:\imageHeben/hb (1).jpg");//加载图片地址 可以是资源文件
+            pix =  cvMatToQPixmap(this->m_cv_img);
+            if(0) painter.drawPixmap(0, 0, width(), height(), pix);//绘制图片 横坐标、纵坐标、宽度、高度
+            painter.drawPixmap(0, 0,   pix);
+        }
+
+        //--------------  openGLWidget
+        if( 1 )
+        {
+            QPainter painter(this->ui->openGLWidget );
+            QPixmap pix;
+            painter.translate(0, 0);
+            if(0)             pix.load("D:\\dataImages--/3.jpg");//加载图片地址 可以是资源文件
+            pix =  cvMatToQPixmap(this->m_cv_img);
+            if( 0 ) painter.drawPixmap(0, 0, width(), height(), pix);//绘制图片 横坐标、纵坐标、宽度、高度
+
+
+            int with =  this->ui->openGLWidget->width ();//要显示的宽度
+            int height = this->ui->openGLWidget->height ();  // IgnoreAspectRatio
+            QPixmap fitpixmap = pix.scaled(with, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+            //QPixmap fitpixmap = pixmap.scaled(with, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);  // 按比例缩放
+
+
+
+            painter.drawPixmap(0, 0,   fitpixmap);
+            //            painter.set
+            //            this->ui->openGLWidget->
+            if(0)          this->ui->openGLWidget->resize( this->ui->openGLWidget ->size());
+        }
+
+        if( 0 )
+        {
+            QImage img =     cvMatToQImage(this->m_cv_img);
+
+            QPainter painter(this->ui->openGLWidget );
+            //    QPixmap pix;
+            painter.translate(0, 0);
+            //    if(0)             pix.load("D:\\dataImages--/3.jpg");//加载图片地址 可以是资源文件
+            //    pix =  cvMatToQPixmap(this->m_cv_img);
+            //      if( 0 ) painter.drawPixmap(0, 0, width(), height(), pix);//绘制图片 横坐标、纵坐标、宽度、高度
+            //    painter.drawPixmap(0, 0,   pix);
+            //            painter.set
+            //            this->ui->openGLWidget->
+            //if(0)          this->ui->openGLWidget->resize( this->ui->openGLWidget ->size());
+            painter.drawImage(0,0, img );
+        }
     }
 }
 
@@ -146,7 +190,7 @@ void VGRibbonWindow::tool_selectFile(std::string title, const QString &p_filter,
     QString file_path;// = QString::fromStdString(pathPast);
     QFileInfo fi;
     QString fileName = QFileDialog::getOpenFileName(this,
-           QString::fromStdString(title), file_path,  p_filter);
+                                                    QString::fromStdString(title), file_path,  p_filter);
     if (fileName.isNull() || fileName.isEmpty())
         return;
     qFileNameFull = fileName;
@@ -244,7 +288,7 @@ void VGRibbonWindow::on_actionOpen_triggered(){
         return;
 #endif
     //------------------
-    #if 0
+#if 0
     //    QString file_name;
     QString file_path;// = QString::fromStdString(pathPast);
     //    QFileInfo fi;
