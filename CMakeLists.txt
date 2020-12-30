@@ -84,7 +84,8 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 
 #set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
-set( Lib_dep_root    "D:/tmp/cf10Cv310DevProClaffifyV1/dependence")
+#set( Lib_dep_root    "D:/tmp/cf10Cv310DevProClaffifyV1/dependence")
+set( Lib_dep_root    "D:/caffeBundle")
 #                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
 #D:\caffeBundle\libraries_v140_x64_py35_1.1.0\libraries
@@ -184,77 +185,10 @@ message( ${jsoncpp_INCLUDE_DIRS})
 message( "jsoncpp find finish.\n\n")
 
 
-
-
-
-##-----------------------------------------添加子文件夹，不添加子库--------------------------------------------------
-## 用include 和 aux_source_directory allsource
-##-------------------------------------------- glog ----------------------------------------------------
-#link_directories("${PROJECT_BINARY_DIR}/lib")
-##D:\awsPcl\AppPclVision\pcl191X64\thirdpartx64
-##set( Lib_dep_root    "${Lib_dep_root}/glog-0.4.0/x64")
-#find_package(glog  REQUIRED  PATHS  "${Lib_dep_root}/glog-0.4.0/x64" )
-#include_directories(${glog_include_directory})
-#link_directories(${glog_library_directory} )
-#include_directories(SYSTEM ${GLOG_INCLUDE_DIRS})
-#list(APPEND LINKER_LIBS ${GLOG_LIBRARIES})
-##message(  ${glog_include_directory}  )
-##message(  ${glog_library_directory}  )
-##message(  ${glog_libraries}  )
-#include_directories(  "${Lib_dep_root}/glog-0.4.0/x64/include"  )
-#link_directories(  "${Lib_dep_root}/glog-0.4.0/x64/lib"  )
-###   D:\win10\aspDep\glog-0.4.0\x64\include
-##include_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/include"  )  # D:\win10\wsx3dDepBig
-##link_directories(  "D:/win10/wsx3dDep/glog-0.4.0/x64/lib"  )
-#set(GLOG_LIB glogd)
-
-
-
-
-
-#--------------------------------------------project------------------------------------------------------
-#####################################做成动态库########################################################
-#if(  0  )
-#    set( LIBRARY_OUTPUT_PATH   ${PROJECT_BINARY_DIR}/lib)
-#    set(LIBRARY_OUTPUT_DIRECTORY   ${PROJECT_BINARY_DIR}/lib)
-#    add_library(ImageClassifyQtKnn SHARED  ${HEADERS} ${SOURCES} ${vision_SOURCE}   ${FORMS}  ${RESOURCES}  )  # ALL_SOURCE
-#    target_link_libraries(  ImageClassifyQtKnn    PUBLIC
-#        Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
-#        ${PCL_LIBRARIES}         # ${VTK_LIBRARIES}
-#        ${BOOST_LIBRARIES}        ${EXTRA_LIBS}
-#        ${OpenCV_LIBRARIES}        #        ${jsoncpp_LIBRARIES}
-#        jsoncpp        #        ${tinyxml2_LIBRARIES}
-#        ${log4cplus_LIBRARIES}        ${glog_libraries}
-#        ${GLOG_LIB}        camerad        #CameraLaserLine
-#        ${lib_KenenceLaserLine}        )
-#    #---------------------------------------------------------------------------------
-#    set(CMAKE_INSTALL_PREFIX  "${PROJECT_BINARY_DIR}/install")
-#    ## Binaries
-#    install (TARGETS ImageClassifyQtKnn    DESTINATION bin)
-#    # Library
-#    # Note: may not work on windows
-#    install (TARGETS ImageClassifyQtKnn    LIBRARY DESTINATION lib)
-#    # Library
-#    # Note: may not work on windows
-#    install (FILES
-#        MainApp/mainapp.h
-#        LaserCamera/lasercameraAPI.h
-#        VisionUI/exportapis.h
-#        DESTINATION include)
-#endif()
-
-
-####################################################################################
-####################################################################################
 ####################################################################################
 #D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence\installCaffeOFull
 
-# caffe
-set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe" )
-find_package(  caffe REQUIRED PATHS  "D:/caffeBundle/installCaffeOFull"  )
-include_directories(  "D:/caffeBundle/installCaffeOFull/include"  )
-LINK_DIRECTORIES (  "D:/caffeBundle/installCaffeOFull/lib" )
-# ${Caffe_LIBRARIES}
+
 
 # zlib
 ##D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib
@@ -300,6 +234,31 @@ INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
 INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
 
 
+
+find_package(   HDF5  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+find_package(   LMDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+set(levelDB_DIR  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/cmake"  )
+find_package(   levelDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+# caffe
+set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe" )
+find_package(  caffe REQUIRED PATHS  "${Lib_dep_root}/installCaffeOFull"    )
+include_directories(  "${Lib_dep_root}/installCaffeOFull/include"  )
+LINK_DIRECTORIES (  "${Lib_dep_root}/installCaffeOFull/lib" )
+# ${Caffe_LIBRARIES}
+
+
 ####################################################################################
 ####################################################################################
 ####################################################################################
@@ -315,15 +274,15 @@ if( 1  )
             ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
             ${BOOST_LIBRARIES}
 #            D:\AwsOneDriver\cf10Cv310DevProClaffifyV1\dependence
-            D:/tmp/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
+            ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
             boost_date_time-vc140-mt-1_61.lib
             ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
             ${Caffe_LIBRARIES}
 #                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib
 #                   glog
 
-            D:/tmp/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
-             D:/tmp/cf10Cv310DevProClaffifyV1/dependence/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
+            ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
+           ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
 
             boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
             boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
