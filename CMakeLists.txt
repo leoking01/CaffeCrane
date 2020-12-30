@@ -1,7 +1,7 @@
 cmake_policy(VERSION 3.9)
 cmake_minimum_required(VERSION 3.9)
 
-project(cf10Cv310DevProClaffifyV1)
+project(cfire)
 
 if(1)
     set (PclVision_VERSION_MAJOR 2)
@@ -181,7 +181,7 @@ message( "jsoncpp find finish.\n\n")
 
 
 ####################################################################################
-# zlib
+ # zlib
 ##D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib
 #set(ZLIB_LIBRARY  "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib" )
 #set(zlib_DIR   "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
@@ -224,12 +224,6 @@ INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/inc
 LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-## glog
-#find_package(   glog REQUIRED PATHS  "D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared"    )
-#INCLUDE_DIRECTORIES("D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared/include")
-#LINK_DIRECTORIES("D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared/lib")
-
-
 find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
     NO_PACKAGE_ROOT_PATH
     NO_CMAKE_PATH
@@ -262,9 +256,6 @@ INCLUDE_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/include")
 LINK_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/lib/x64")
 
 
-#//cv
-#D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/cv310Vs15Cuda8installAllFull
-#find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/x64/vc14/lib"  )
 find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs2015DebugReleaseNoCa"
     NO_PACKAGE_ROOT_PATH
     NO_CMAKE_PATH
@@ -328,10 +319,11 @@ LINK_DIRECTORIES (  "${Lib_dep_root}/installCaffeOFull/lib" )
 
 
 ######################################生成exe#######################################################
-if( 1  )
+set(gen_exe_flag  true  )
+if( ${gen_exe_flag}    )
     set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
     add_executable(${PROJECT_NAME}    MACOSX_BUNDLE ${SOURCES}   ${vision_SOURCE}   ${FORMS}   ${RESOURCES}  ) # ${RESOURCES}
-    if(  1 )
+#    if(  1 )
         target_link_libraries(   ${PROJECT_NAME}  PUBLIC
             Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
             ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
@@ -341,23 +333,19 @@ if( 1  )
             boost_date_time-vc140-mt-1_61.lib
             ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
             ${Caffe_LIBRARIES}
-#                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib
-#                   glog
-
+#                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib #                   glog
             ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
            ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
-
             boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
             boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
-
             ${EXTRA_LIBS}
             ${OpenCV_LIBRARIES}            #  ${jsoncpp_LIBRARIES}
             jsoncpp            #   ${tinyxml2_LIBRARIES}
             ${log4cplus_LIBRARIES}            ${glog_libraries}
             ${GLOG_LIB}#            camerad             #CameraLaserLine  #            ${lib_KenenceLaserLine}
             )
-    endif()
-endif()
+#    endif()
+endif(${gen_exe_flag} )
 message( "(6)(lk)__________ project ___________:  "  )
 message(  "project info(lk):  "  )
 message(   ${PROJECT_NAME}  )
@@ -366,16 +354,13 @@ message(   ${SOURCES}   )
 message(   ${vision_SOURCE}  )
 message(   ${FORMS}   )
 
-
 #------------------------------------------- version ------------------------------------------------
 include_directories(${PROJECT_BINARY_DIR}    ${OpenCL_INCLUDE_DIRS}    )
-
 
 #---------------------------------------------------------------------------------
 set(CMAKE_INSTALL_PREFIX  "${PROJECT_BINARY_DIR}/install")
 ## Binaries
 install (TARGETS  ${PROJECT_NAME}     DESTINATION bin)
-
 
 #######################################################
 #Add some multithreaded build support
