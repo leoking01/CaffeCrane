@@ -88,16 +88,6 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 set( Lib_dep_root    "D:/caffeBundle")
 #                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
-#D:\caffeBundle\libraries_v140_x64_py35_1.1.0\libraries
-#   //cv
-#D:\win10\opencv310Full\opencv-3.1.0Cu8Vs15Full\x64\vc14\lib
-#D:\\win10\\opencv440\\opencv\\build\\x64\\vc14\\lib
-#set(OpenCV_DIR "${Lib_dep_root}/cv310Vs15Cuda8installAllFull/x64/vc14/lib")
-#set(OpenCV_FOUND  TRUE)
-#set(OpenCV_DIR "E:\\AwsOneDriver\\aStudioLk\\caffe10Cv310DevProClaffifyV1\\dependence/cv310Vs15Cuda8installAllFull")
-#find_package( OpenCV   REQUIRED PATHS "${Lib_dep_root}/cv310Vs15Cuda8installAllFull" )
-#find_package( OpenCV   EXACT  3.1.0  REQUIRED   )
-
 #if( 0 )
 #    ### ---[ 3rd party libraries
 #    macro(find_boost)
@@ -148,7 +138,6 @@ set( Lib_dep_root    "D:/caffeBundle")
 #endif()
 
 
-
 ##D:/win10/pcl181Orig/3rdParty/Boost/include/boost-1_64
 #SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
 #set(BOOST_INCLUDEDIR "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
@@ -168,14 +157,20 @@ set( Lib_dep_root    "D:/caffeBundle")
 ##message( ${BOOST_LIBRARIES} )
 
 
-
-
-
-
 #F:\win10\pcl191X64\thirdpartx64\jsoncpp-master\x64
 #------------------- jsoncpp ----------------------------------
 message( "(5.01)(lk)________ jsoncpp _______:  ")
-#find_package(json11   REQUIRED PATHS "${Lib_dep_root}" )
+find_package(jsoncpp   REQUIRED PATHS "${Lib_dep_root}/jsoncpp-master/x64"
+    NO_DEFAULT_PATH
+             NO_PACKAGE_ROOT_PATH
+             NO_CMAKE_PATH
+             NO_CMAKE_ENVIRONMENT_PATH
+             NO_SYSTEM_ENVIRONMENT_PATH
+             NO_CMAKE_PACKAGE_REGISTRY
+             NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+             NO_CMAKE_SYSTEM_PATH
+             NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 set( jsoncpp_INCLUDE_DIRS    "${Lib_dep_root}/jsoncpp-master/x64/include" )
 link_directories(   "${Lib_dep_root}/jsoncpp-master/x64/lib"  )
 include_directories(${jsoncpp_INCLUDE_DIRS})
@@ -186,10 +181,6 @@ message( "jsoncpp find finish.\n\n")
 
 
 ####################################################################################
-#D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence\installCaffeOFull
-
-
-
 # zlib
 ##D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib
 #set(ZLIB_LIBRARY  "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib" )
@@ -197,7 +188,18 @@ message( "jsoncpp find finish.\n\n")
 #find_package(  zlib   PATHS "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
 
 # boost
-find_package(  boost REQUIRED )
+find_package(  boost REQUIRED
+#    PATHS "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+#        NO_DEFAULT_PATH
+#                 NO_PACKAGE_ROOT_PATH
+#                 NO_CMAKE_PATH
+#                 NO_CMAKE_ENVIRONMENT_PATH
+#                 NO_SYSTEM_ENVIRONMENT_PATH
+#                 NO_CMAKE_PACKAGE_REGISTRY
+#                 NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+#                 NO_CMAKE_SYSTEM_PATH
+#                 NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
 LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
@@ -207,7 +209,17 @@ LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 #INCLUDE_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14/include")
 #LINK_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14Shared/lib")
 
-find_package(   gflags REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+find_package(   gflags REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+    NO_DEFAULT_PATH
+             NO_PACKAGE_ROOT_PATH
+             NO_CMAKE_PATH
+             NO_CMAKE_ENVIRONMENT_PATH
+             NO_SYSTEM_ENVIRONMENT_PATH
+             NO_CMAKE_PACKAGE_REGISTRY
+             NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+             NO_CMAKE_SYSTEM_PATH
+             NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
 LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
@@ -218,24 +230,66 @@ LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 #LINK_DIRECTORIES("D:/win10/aspDep14/glog-0.4.0/x64Vs14Shared/lib")
 
 
-find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+    NO_PACKAGE_ROOT_PATH
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_PACKAGE_REGISTRY
+    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
 LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
+
 #// cuad
+find_package(   cuda  REQUIRED
+#    PATHS  "${Lib_dep_root}/CUDA/v8.0"
+#    NO_PACKAGE_ROOT_PATH
+#    NO_CMAKE_PATH
+#    NO_CMAKE_ENVIRONMENT_PATH
+#    NO_SYSTEM_ENVIRONMENT_PATH
+#    NO_CMAKE_PACKAGE_REGISTRY
+#    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+#    NO_CMAKE_SYSTEM_PATH
+#    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
+set(CUDA_SDK_ROOT_DIR  "${Lib_dep_root}/CUDA/v8.0"   )
+set(CUDA_TOOLKIT_ROOT_DIR  "${Lib_dep_root}/CUDA/v8.0"   )
 INCLUDE_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/include")
 LINK_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/lib/x64")
+
 
 #//cv
 #D:/AwsOneDriver/AStudioLk/caffe10Cv310DevProClaffifyV1/dependence/cv310Vs15Cuda8installAllFull
 #find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/x64/vc14/lib"  )
-find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs15Cuda8installAllFull"  )
+find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs2015DebugReleaseNoCa"
+    NO_PACKAGE_ROOT_PATH
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_PACKAGE_REGISTRY
+    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
 INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
 
 
 
-find_package(   HDF5  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+find_package(   HDF5  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+    NO_PACKAGE_ROOT_PATH
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_PACKAGE_REGISTRY
+    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
 LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
@@ -252,7 +306,16 @@ LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
 # caffe
-set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe" )
+set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe"
+    NO_PACKAGE_ROOT_PATH
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_PACKAGE_REGISTRY
+    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+    )
 find_package(  caffe REQUIRED PATHS  "${Lib_dep_root}/installCaffeOFull"    )
 include_directories(  "${Lib_dep_root}/installCaffeOFull/include"  )
 LINK_DIRECTORIES (  "${Lib_dep_root}/installCaffeOFull/lib" )
