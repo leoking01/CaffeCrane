@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
     std:: time_t t;
     time( &t );
     checkTimestamp( t ) ;
-    if(  !  ifValideCheck("2022-09-28")  ){
+    if(  !  ifValideCheck("2023-09-28")  ){
         std::cout<< "product has been out of valid date.please contact to the server provider."<<std::endl;
         return  -1;
     }

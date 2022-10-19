@@ -62,7 +62,7 @@ INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}
     "${PROJECT_SOURCE_DIR}/UISet"
     "${PROJECT_SOURCE_DIR}/CoreFunctions"
     "${PROJECT_SOURCE_DIR}/Classify"
-    )
+)
 
 # 包含进目录 gen_pcd/
 include_directories("${PROJECT_BINARY_DIR}")
@@ -85,7 +85,11 @@ file(GLOB_RECURSE FORMS "./*.ui"   "./UISet/*.ui"   )
 
 #set( Lib_dep_root    "D:/AwsOneDriver/aStudioLk/caffe10Cv310DevProClaffifyV1/dependence")
 #set( Lib_dep_root    "D:/tmp/cf10Cv310DevProClaffifyV1/dependence")
-set( Lib_dep_root    "D:/caffeBundle")
+#set( Lib_dep_root    "D:/caffeBundle/downDeps/dependencies")
+set( Lib_dep_root    "E:\\A_caffe\\CaffeCrane\\caffeBundle")
+#set( Lib_dep_root_extra    "D:/caffeBundle/DepCaffeExp")
+set( Lib_dep_root_extra    "D:/win10")
+#${Lib_dep_root}/downDeps/dependencies
 #                     D:\AwsOneDriver\AStudioLk\caffe10DevProClaffifyV1\dependence
 
 #if( 0 )
@@ -160,19 +164,19 @@ set( Lib_dep_root    "D:/caffeBundle")
 #F:\win10\pcl191X64\thirdpartx64\jsoncpp-master\x64
 #------------------- jsoncpp ----------------------------------
 message( "(5.01)(lk)________ jsoncpp _______:  ")
-find_package(jsoncpp   REQUIRED PATHS "${Lib_dep_root}/jsoncpp-master/x64"
+find_package(jsoncpp   REQUIRED PATHS "${Lib_dep_root_extra}/jsoncpp/x64"
     NO_DEFAULT_PATH
-             NO_PACKAGE_ROOT_PATH
-             NO_CMAKE_PATH
-             NO_CMAKE_ENVIRONMENT_PATH
-             NO_SYSTEM_ENVIRONMENT_PATH
-             NO_CMAKE_PACKAGE_REGISTRY
-             NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-             NO_CMAKE_SYSTEM_PATH
-             NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-set( jsoncpp_INCLUDE_DIRS    "${Lib_dep_root}/jsoncpp-master/x64/include" )
-link_directories(   "${Lib_dep_root}/jsoncpp-master/x64/lib"  )
+    NO_PACKAGE_ROOT_PATH
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_PACKAGE_REGISTRY
+    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+)
+set( jsoncpp_INCLUDE_DIRS    "${Lib_dep_root_extra}/jsoncpp/x64/include" )
+link_directories(   "${Lib_dep_root_extra}/jsoncpp/x64/lib"  )
 include_directories(${jsoncpp_INCLUDE_DIRS})
 message( "jsoncpp info(lk):  ")
 message( ${jsoncpp_INCLUDE_DIRS})
@@ -181,66 +185,74 @@ message( "jsoncpp find finish.\n\n")
 
 
 ####################################################################################
- # zlib
+#  zlib
 ##D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib
-#set(ZLIB_LIBRARY  "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib" )
-#set(zlib_DIR   "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
-#find_package(  zlib   PATHS "D:/caffeBundle/libraries_v140_x64_py35_1.1.0/libraries/cmake" )
-
-# boost
-find_package(  boost REQUIRED
-#    PATHS "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
-#        NO_DEFAULT_PATH
-#                 NO_PACKAGE_ROOT_PATH
-#                 NO_CMAKE_PATH
-#                 NO_CMAKE_ENVIRONMENT_PATH
-#                 NO_SYSTEM_ENVIRONMENT_PATH
-#                 NO_CMAKE_PACKAGE_REGISTRY
-#                 NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-#                 NO_CMAKE_SYSTEM_PATH
-#                 NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#set(ZLIB_LIBRARY  "D:/caffeBundle//downDeps/dependencieslibraries_v140_x64_py35_1.1.0/libraries/lib/caffezlib.lib" )
+#set(zlib_DIR   "D:/caffeBundle//downDeps/dependencieslibraries_v140_x64_py35_1.1.0/libraries/cmake" )
+#find_package(  zlib   PATHS "D:/caffeBundle//downDeps/dependencieslibraries_v140_x64_py35_1.1.0/libraries/cmake" )
 
 
-## gflags
-#find_package(   gflags REQUIRED PATHS  "D:/win10/aspDep14/gflags-2.2.2/x64Vs14"    )
-#INCLUDE_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14/include")
-#LINK_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14Shared/lib")
-
-find_package(   gflags REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
-    NO_DEFAULT_PATH
-             NO_PACKAGE_ROOT_PATH
-             NO_CMAKE_PATH
-             NO_CMAKE_ENVIRONMENT_PATH
-             NO_SYSTEM_ENVIRONMENT_PATH
-             NO_CMAKE_PACKAGE_REGISTRY
-             NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-             NO_CMAKE_SYSTEM_PATH
-             NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#set(libzip_DIR   "D:/caffeBundle/DepCaffeExp/zip/x64Vs2015/lib/cmake/libzip" )
+#find_package(  libzip PATHS  "D:/caffeBundle/DepCaffeExp/zip/x64Vs2015/lib/cmake/libzip"  REQUIRED  )
 
 
-find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
-    NO_PACKAGE_ROOT_PATH
-    NO_CMAKE_PATH
-    NO_CMAKE_ENVIRONMENT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_PACKAGE_REGISTRY
-    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-    NO_CMAKE_SYSTEM_PATH
-    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-#// cuad
-find_package(   cuda  REQUIRED
-#    PATHS  "${Lib_dep_root}/CUDA/v8.0"
+
+
+#find_package(zlib REQUIRED   PATHS  "D:/win10/zlib/zlib_1.2.11.0_MSVC_19.0.24210.0_install")
+#if(CMAKE_BUILD_TYPE  MATCHES  "Debug"  )
+#     message("debug,0000000000000000000000")
+#   set(ZLIB_LIBRARY  "${Caffe_main_root}/lib/zlibd.lib")
+#elseif(CMAKE_BUILD_TYPE  MATCHES  "Release" )
+#    message("release,11111111111111111")
+#    set(ZLIB_LIBRARY  "${Caffe_main_root}/lib/zlib.lib")
+#else()
+#     message("ooooooooooo,222222222222")
+#    set(ZLIB_LIBRARY  "${Caffe_main_root}/lib/zlib.lib")
+#endif()
+
+
+
+###[[ boost
+#find_package(  boost
+#    #REQUIRED
+##    PATHS "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+##        NO_DEFAULT_PATH
+##                 NO_PACKAGE_ROOT_PATH
+##                 NO_CMAKE_PATH
+##                 NO_CMAKE_ENVIRONMENT_PATH
+##                 NO_SYSTEM_ENVIRONMENT_PATH
+##                 NO_CMAKE_PACKAGE_REGISTRY
+##                 NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+##                 NO_CMAKE_SYSTEM_PATH
+##                 NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+#    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include/boost-1_61")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+### gflags
+##find_package(   gflags REQUIRED PATHS  "D:/win10/aspDep14/gflags-2.2.2/x64Vs14"    )
+##INCLUDE_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14/include")
+##LINK_DIRECTORIES("D:/win10/aspDep14/gflags-2.2.2/x64Vs14Shared/lib")
+
+#find_package(   gflags REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+#    NO_DEFAULT_PATH
+#             NO_PACKAGE_ROOT_PATH
+#             NO_CMAKE_PATH
+#             NO_CMAKE_ENVIRONMENT_PATH
+#             NO_SYSTEM_ENVIRONMENT_PATH
+#             NO_CMAKE_PACKAGE_REGISTRY
+#             NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+#             NO_CMAKE_SYSTEM_PATH
+#             NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+#    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+
+
+#find_package(   glog REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
 #    NO_PACKAGE_ROOT_PATH
 #    NO_CMAKE_PATH
 #    NO_CMAKE_ENVIRONMENT_PATH
@@ -249,68 +261,263 @@ find_package(   cuda  REQUIRED
 #    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
 #    NO_CMAKE_SYSTEM_PATH
 #    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-set(CUDA_SDK_ROOT_DIR  "${Lib_dep_root}/CUDA/v8.0"   )
-set(CUDA_TOOLKIT_ROOT_DIR  "${Lib_dep_root}/CUDA/v8.0"   )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/include")
-LINK_DIRECTORIES("${Lib_dep_root}/CUDA/v8.0/lib/x64")
+#    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs2015DebugReleaseNoCa"
-    NO_PACKAGE_ROOT_PATH
-    NO_CMAKE_PATH
-    NO_CMAKE_ENVIRONMENT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_PACKAGE_REGISTRY
-    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-    NO_CMAKE_SYSTEM_PATH
-    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
-INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
+##// cuad
+#set(cuda8_root  "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0")
+#find_package(   cuda
+##    REQUIRED
+##    PATHS  "${Lib_dep_root}/CUDA/v8.0"
+#      PATHS   ${cuda8_root}
+##    NO_PACKAGE_ROOT_PATH
+##    NO_CMAKE_PATH
+##    NO_CMAKE_ENVIRONMENT_PATH
+##    NO_SYSTEM_ENVIRONMENT_PATH
+##    NO_CMAKE_PACKAGE_REGISTRY
+##    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+##    NO_CMAKE_SYSTEM_PATH
+##    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+#    )
+##C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\include\cublas_v2.h
+#set(CUDA_SDK_ROOT_DIR  "${cuda8_root}"   )
+#set(CUDA_TOOLKIT_ROOT_DIR  "${cuda8_root}"   )
+#INCLUDE_DIRECTORIES("${cuda8_root}/include")
+#LINK_DIRECTORIES("${cuda8_root}/lib/x64")
+
+##find_package(  OpenCV  PATHS  "${Lib_dep_root}/cv310Vs2015DebugReleaseNoCa"
+#find_package(  OpenCV  PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"  REQUIRED
+#    NO_PACKAGE_ROOT_PATH
+#    NO_CMAKE_PATH
+#    NO_CMAKE_ENVIRONMENT_PATH
+#    NO_SYSTEM_ENVIRONMENT_PATH
+#    NO_CMAKE_PACKAGE_REGISTRY
+#    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+#    NO_CMAKE_SYSTEM_PATH
+#    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+#    )
+#INCLUDE_DIRECTORIES (   ${OpenCV_INCLUDE_DIRS} )
+#INCLUDE_DIRECTORIES (   ${OpenCV_INSTALL_PATH} )
 
 
 
-find_package(   HDF5  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
-    NO_PACKAGE_ROOT_PATH
-    NO_CMAKE_PATH
-    NO_CMAKE_ENVIRONMENT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_PACKAGE_REGISTRY
-    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-    NO_CMAKE_SYSTEM_PATH
-    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#find_package(   HDF5  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"
+#    NO_PACKAGE_ROOT_PATH
+#    NO_CMAKE_PATH
+#    NO_CMAKE_ENVIRONMENT_PATH
+#    NO_SYSTEM_ENVIRONMENT_PATH
+#    NO_CMAKE_PACKAGE_REGISTRY
+#    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
+#    NO_CMAKE_SYSTEM_PATH
+#    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+#    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-find_package(   LMDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#find_package(   LMDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-set(levelDB_DIR  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/cmake"  )
-find_package(   levelDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
-INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
-LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
+#set(levelDB_DIR  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/cmake"  )
+#find_package(   levelDB  REQUIRED PATHS  "${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries"    )
+#INCLUDE_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/include")
+#LINK_DIRECTORIES("${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib")
 
 
-# caffe
-set(caffe_DIR  "${Lib_dep_root}/installCaffeOFull/share/Caffe"
-    NO_PACKAGE_ROOT_PATH
-    NO_CMAKE_PATH
-    NO_CMAKE_ENVIRONMENT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_PACKAGE_REGISTRY
-    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.
-    NO_CMAKE_SYSTEM_PATH
-    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
-    )
-find_package(  caffe REQUIRED PATHS  "${Lib_dep_root}/installCaffeOFull"    )
-include_directories(  "${Lib_dep_root}/installCaffeOFull/include"  )
-LINK_DIRECTORIES (  "${Lib_dep_root}/installCaffeOFull/lib" )
-# ${Caffe_LIBRARIES}
+### caffe
+###installCaffeOFull
+###Installcaffe
+##set(Caffe_DIR  "${Lib_dep_root}/Installcaffe/share/Caffe" )
+##find_package(  Caffe  PATHS  "${Lib_dep_root}/Installcaffe"
+###    REQUIRED
+##    NO_PACKAGE_ROOT_PATH
+##    NO_CMAKE_PATH
+##    NO_CMAKE_ENVIRONMENT_PATH
+##    NO_SYSTEM_ENVIRONMENT_PATH
+##    NO_CMAKE_PACKAGE_REGISTRY
+##    NO_CMAKE_BUILDS_PATH # Deprecated; does nothing.    REQUIRED
+##    NO_CMAKE_SYSTEM_PATH
+##    NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
+##    )
+#include_directories(  "${Lib_dep_root}/Installcaffe/include" "D:\\caffeBundle\\installCaffeOFull\\include"  )
+#LINK_DIRECTORIES (  "${Lib_dep_root}/Installcaffe/lib" "D:\\caffeBundle\\installCaffeOFull\\lib" )
+## ${Caffe_LIBRARIES}
+
+
+
+#//----------------------------------------------------
+
+#E:\A_caffe\CaffeCrane\caffeBundle\installCaffeOFull
+set(Caffe_main_root  "E:\\A_caffe\\CaffeCrane\\caffeBundle\\installCaffeOFull"  )
+
+
+set(zlib_root  "D:/win10/zlib/zlib_1.2.11.0_MSVC_19.0.24210.0_install" )
+find_package(zlib REQUIRED   PATHS  "D:/win10/zlib/zlib_1.2.11.0_MSVC_19.0.24210.0_install")
+if(CMAKE_BUILD_TYPE  MATCHES  "Debug"  )
+    message("debug,0000000000000000000000")
+    set(ZLIB_LIBRARY  "${zlib_root}/lib/zlibd.lib")
+elseif(CMAKE_BUILD_TYPE  MATCHES  "Release" )
+    message("release,000000000000000")
+    set(ZLIB_LIBRARY  "${zlib_root}/lib/zlib.lib")
+else()
+    message("ooooooooooo,0000000000000000000")
+    set(ZLIB_LIBRARY  "${zlib_root}/lib/zlib.lib")
+endif()
+
+
+# Dependencies
+find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
+message( " {Boost_LIBRARIES} = ${Boost_LIBRARIES}"  )
+
+
+
+#set(Caffe_DIR "${Caffe_main_root}/share/Caffe"  )
+#find_package(Caffe REQUIRED   PATHS  "${Caffe_main_root}")
+
+
+set(deps_root  "E:\\A_caffe\\CaffeCu8Py35Win\\deps\\libraries_v140_x64_py35_1.1.0\\libraries"  )
+include_directories(
+    "${deps_root}\\include"
+    "${deps_root}\\include\\boost-1_61"
+    ${Caffe_INCLUDE_DIRS}
+    "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\include"
+)
+link_directories(
+    "${deps_root}/lib"
+    "${deps_root}/x64\\vc14\\lib"
+)
+
+message( "  {Caffe_LIBRARIES} = ${Caffe_LIBRARIES} "  )
+add_definitions( -DUSE_OPENCV )
+
+#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDebug$<$<CONFIG:Debug>:Debug>")
+#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDebugDLL$<$<CONFIG:Debug>:Debug>")
+
+set(libs_deps_debug
+    "${Caffe_main_root}/lib/caffe-d.lib"
+    "${Caffe_main_root}/lib/caffeproto-d.lib"
+    "D:\\win10\\Miniconda3319pt35x64\\pkgs\\python-3.5.5-he025d50_2\\libs\\python35.lib"
+    -lgflagsd  -lglogd   -lsnappyd
+
+    "${deps_root}/lib/libcaffehdf5_D.lib"
+    "${deps_root}/lib/libcaffehdf5_hl_D.lib"
+    "${deps_root}/lib/libcaffehdf5_cpp_D.lib"
+    "${deps_root}/lib/libcaffehdf5_hl_cpp_D.lib"
+
+    "${deps_root}/lib/caffehdf5_D.lib"
+    "${deps_root}/lib/caffehdf5_hl_D.lib"
+    "${deps_root}/lib/caffehdf5_cpp_D.lib"
+    "${deps_root}/lib/caffehdf5_hl_cpp_D.lib"
+
+    "${deps_root}/lib/caffezlibd.lib"
+    "${deps_root}/lib/caffezlibstaticd.lib"
+
+    -lcaffezlibd
+    -lleveldbd
+
+    -lprotobufd  -lprotocd  -lprotobuf-lited
+    "${deps_root}/lib/libprotobufd.lib"
+    "${deps_root}/lib/libprotocd.lib"
+    "${deps_root}/lib/libprotobuf-lited.lib"
+
+    "${deps_root}/lib/gflagsd.lib"
+    "${deps_root}/lib/glogd.lib"
+    "${deps_root}\\lib/libopenblas.dll.a"
+
+    ${Boost_LIBRARIES}
+
+    "${deps_root}\\lib/boost_atomic-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_chrono-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_container-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_context-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_coroutine-vc140-mt-gd-1_61.lib"
+
+    #     "${deps_root}\\lib/libboost_date_time-vc140-mt-1_61.lib"
+    #    "${deps_root}\\lib/libboost_date_time-vc140-mt-1_61.lib"
+    #     "${deps_root}\\lib/libboost_filesystem-vc140-mt-1_61.lib"
+
+    "${deps_root}\\lib/boost_math_tr1-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_prg_exec_monitor-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_program_options-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_python3-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_python-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_random-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_regex-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_serialization-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_signals-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_system-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_thread-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_timer-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_type_erasure-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_unit_test_framework-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_wave-vc140-mt-gd-1_61.lib"
+
+    "${deps_root}\\lib/boost_wserialization-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/boost_wserialization-vc140-mt-gd-1_61.lib"
+
+    "${deps_root}\\lib/libboost_chrono-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_date_time-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_exception-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_filesystem-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_system-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_test_exec_monitor-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_timer-vc140-mt-gd-1_61.lib"
+    "${deps_root}\\lib/libboost_unit_test_framework-vc140-mt-gd-1_61.lib"
+
+
+    "${deps_root}/x64\\vc14\\lib/opencv_imgcodecs310d.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_core310d.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_imgproc310d.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_video310d.lib"
+    ${ZLIB_LIBRARY}
+)
+
+
+set(libs_deps_release
+    "${Caffe_main_root}/lib/caffe.lib"
+    "${Caffe_main_root}/lib/caffeproto.lib"
+    #    D:\win10\Miniconda3319pt35x64\pkgs\python-3.5.5-he025d50_2\libs\python35.lib
+    "D:\\win10\\Miniconda3319pt35x64\\pkgs\\python-3.5.5-he025d50_2\\libs\\python35.lib"
+
+    -lgflags   -lglog    -lsnappy
+    #    -lcaffehdf5_hl_D -lcaffehdf5_cpp_D   -lcaffehdf5_hl_cpp_D
+    "${deps_root}/lib/libcaffehdf5.lib"
+    "${deps_root}/lib/libcaffehdf5_hl.lib"
+    "${deps_root}/lib/libcaffehdf5_cpp.lib"
+    "${deps_root}/lib/libcaffehdf5_hl_cpp.lib"
+
+    -lcaffezlib
+
+    -lleveldb
+
+    -lprotobuf  -lprotoc   -lprotobuf-lite
+    "${deps_root}/lib/libprotobuf.lib"
+    "${deps_root}/lib/libprotoc.lib"
+    "${deps_root}/lib/libprotobuf-lite.lib"
+
+    "${deps_root}/lib/gflagsd.lib"
+    "${deps_root}/lib/glogd.lib"
+
+    "${deps_root}\\lib/libopenblas.dll.a"
+    "${deps_root}\\lib/libboost_date_time-vc140-mt-1_61.lib"
+    "${deps_root}\\lib/libboost_date_time-vc140-mt-1_61.lib"
+    "${deps_root}\\lib/libboost_filesystem-vc140-mt-1_61.lib"
+
+    "${deps_root}/x64\\vc14\\lib/opencv_imgcodecs310.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_core310.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_imgproc310.lib"
+    "${deps_root}/x64\\vc14\\lib/opencv_video310.lib"
+    # opencv_core310d  opencv_imgproc310d  opencv_features2d310d  opencv_imgcodecs310d
+    ${ZLIB_LIBRARY}
+)
+
+
+
 
 
 ####################################################################################
@@ -319,33 +526,51 @@ LINK_DIRECTORIES (  "${Lib_dep_root}/installCaffeOFull/lib" )
 
 
 ######################################生成exe#######################################################
-set(gen_exe_flag  true  )
-if( ${gen_exe_flag}    )
-    set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-    add_executable(${PROJECT_NAME}    MACOSX_BUNDLE ${SOURCES}   ${vision_SOURCE}   ${FORMS}   ${RESOURCES}  ) # ${RESOURCES}
-#    if(  1 )
-        target_link_libraries(   ${PROJECT_NAME}  PUBLIC
-            Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
-            ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
-            ${BOOST_LIBRARIES}
-#            D:\AwsOneDriver\cf10Cv310DevProClaffifyV1\dependence
-            ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
-            boost_date_time-vc140-mt-1_61.lib
-            ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
-            ${Caffe_LIBRARIES}
-#                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib #                   glog
-            ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
-           ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
-            boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
-            boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
-            ${EXTRA_LIBS}
-            ${OpenCV_LIBRARIES}            #  ${jsoncpp_LIBRARIES}
-            jsoncpp            #   ${tinyxml2_LIBRARIES}
-            ${log4cplus_LIBRARIES}            ${glog_libraries}
-            ${GLOG_LIB}#            camerad             #CameraLaserLine  #            ${lib_KenenceLaserLine}
-            )
-#    endif()
-endif(${gen_exe_flag} )
+#set(gen_exe_flag  true  )
+#if( ${gen_exe_flag}    )
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+add_executable(${PROJECT_NAME}    MACOSX_BUNDLE ${SOURCES}   ${vision_SOURCE}   ${FORMS}   ${RESOURCES}  ) # ${RESOURCES}
+
+target_link_libraries(   ${PROJECT_NAME}  PUBLIC
+    Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Qml Qt5::Quick
+    ${PCL_LIBRARIES}            # ${VTK_LIBRARIES}
+    ${BOOST_LIBRARIES}
+    #            D:\AwsOneDriver\cf10Cv310DevProClaffifyV1\dependence
+    ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/boost_date_time-vc140-mt-1_61.lib
+    boost_date_time-vc140-mt-1_61.lib
+    ${OpenCV_LIBRARIES}  ${OpenCV_LIBS}
+    ${Caffe_LIBRARIES}
+    #                D:/win10/aspDep14/gflags-2.2.2/x64Vs14/lib/gflags.lib #                   glog
+    ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/gflags.lib
+    ${Lib_dep_root}/libraries_v140_x64_py35_1.1.0/libraries/lib/glog.lib
+    boost_atomic-vc140-mt-1_61     boost_chrono-vc140-mt-1_61
+    boost_filesystem-vc140-mt-1_61   boost_iostreams-vc140-mt-1_61
+    ${EXTRA_LIBS}
+    ${OpenCV_LIBRARIES}            #  ${jsoncpp_LIBRARIES}
+    jsoncpp            #   ${tinyxml2_LIBRARIES}
+    ${log4cplus_LIBRARIES}            ${glog_libraries}
+    ${GLOG_LIB}#            camerad             #CameraLaserLine  #            ${lib_KenenceLaserLine}
+
+    ${libs_deps_debug}
+    "${Caffe_main_root}/lib/caffe-d.lib"
+    "${Caffe_main_root}/lib/caffeproto-d.lib"
+     "D:\\win10\\Miniconda3319pt35x64\\pkgs\\python-3.5.5-he025d50_2\\libs\\python35.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cublas.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cublas_device.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cuda.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cudadevrt.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cudart.lib"
+     "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/curand.lib"
+      "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v8.0\\lib\\x64/cudnn.lib"
+)
+target_include_directories(${PROJECT_NAME}  PRIVATE  "${Caffe_main_root}/include"
+    "${Caffe_main_root}/include/caffe"
+)
+target_link_directories(${PROJECT_NAME}  PRIVATE
+    "${Caffe_main_root}/lib"
+)
+
+#endif(${gen_exe_flag} )
 message( "(6)(lk)__________ project ___________:  "  )
 message(  "project info(lk):  "  )
 message(   ${PROJECT_NAME}  )
